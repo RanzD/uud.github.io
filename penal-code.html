@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kitab Undang-Undang Hukum Pidana — Penal Code</title>
+<link href="https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Source+Code+Pro:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1209;
+    --ink-light: #3d2e10;
+    --parchment: #f5ead8;
+    --parchment-dark: #e8d9bf;
+    --parchment-darker: #d9c8a8;
+    --accent: #8b1a1a;
+    --accent-light: #b52525;
+    --gold: #9a7d3a;
+    --rule: #c4a96b;
+    --felony-bg: rgba(139,26,26,0.07);
+    --misdemeanor-bg: rgba(120,90,10,0.06);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #2a2015;
+    font-family: 'Libre Baskerville', Georgia, serif;
+    color: var(--ink);
+    min-height: 100vh;
+    padding: 40px 20px;
+    position: relative;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 28px,
+      rgba(0,0,0,0.03) 28px,
+      rgba(0,0,0,0.03) 29px
+    );
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .page {
+    max-width: 820px;
+    margin: 0 auto;
+    background: var(--parchment);
+    background-image:
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    box-shadow:
+      0 0 0 1px var(--rule),
+      0 0 0 6px var(--parchment-dark),
+      0 0 0 7px var(--rule),
+      8px 8px 40px rgba(0,0,0,0.5),
+      -8px 8px 40px rgba(0,0,0,0.3);
+    position: relative;
+    z-index: 1;
+  }
+
+  /* HEADER */
+  .doc-header {
+    padding: 50px 60px 30px;
+    text-align: center;
+    border-bottom: 3px double var(--rule);
+    position: relative;
+  }
+
+  .doc-header::after {
+    content: '';
+    display: block;
+    margin: 12px auto 0;
+    width: 60px;
+    height: 3px;
+    background: var(--rule);
+  }
+
+  .seal {
+    width: 72px;
+    height: 72px;
+    border: 3px solid var(--gold);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+    font-family: 'IM Fell English', serif;
+    font-size: 22px;
+    color: var(--gold);
+    position: relative;
+    background: var(--parchment);
+    box-shadow: 0 0 0 6px var(--parchment), 0 0 0 8px var(--gold);
+  }
+
+  .seal::before {
+    content: '⚖';
+    font-size: 28px;
+  }
+
+  .doc-title {
+    font-family: 'IM Fell English', serif;
+    font-size: 2rem;
+    color: var(--accent);
+    letter-spacing: 0.05em;
+    line-height: 1.3;
+    text-transform: uppercase;
+  }
+
+  .doc-subtitle {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 0.85rem;
+    font-style: italic;
+    color: var(--ink-light);
+    margin-top: 8px;
+    letter-spacing: 0.08em;
+  }
+
+  .doc-meta {
+    margin-top: 16px;
+    font-size: 0.75rem;
+    color: var(--gold);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  /* LEGEND BAR */
+  .legend-bar {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    padding: 12px 60px;
+    background: var(--parchment-dark);
+    border-bottom: 1px solid var(--rule);
+    font-size: 0.78rem;
+    letter-spacing: 0.06em;
+  }
+
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--ink-light);
+  }
+
+  .badge {
+    display: inline-block;
+    font-family: 'Source Code Pro', monospace;
+    font-size: 0.7rem;
+    font-weight: 600;
+    padding: 2px 7px;
+    border-radius: 2px;
+    letter-spacing: 0.06em;
+  }
+
+  .badge-F {
+    background: var(--accent);
+    color: #fff;
+  }
+
+  .badge-M {
+    background: var(--gold);
+    color: #fff;
+  }
+
+  /* SEARCH */
+  .search-wrap {
+    padding: 16px 60px;
+    border-bottom: 1px solid var(--rule);
+    background: var(--parchment);
+  }
+
+  .search-wrap input {
+    width: 100%;
+    padding: 9px 14px;
+    font-family: 'Libre Baskerville', serif;
+    font-size: 0.85rem;
+    font-style: italic;
+    background: var(--parchment-dark);
+    border: 1px solid var(--rule);
+    color: var(--ink);
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  .search-wrap input:focus {
+    border-color: var(--gold);
+  }
+
+  .search-wrap input::placeholder { color: #a08050; }
+
+  /* BODY */
+  .doc-body {
+    padding: 30px 60px 50px;
+  }
+
+  /* BAB (CHAPTER) */
+  .chapter {
+    margin-bottom: 28px;
+    border: 1px solid var(--parchment-darker);
+    border-top: 3px solid var(--rule);
+  }
+
+  .chapter-header {
+    display: flex;
+    align-items: stretch;
+    cursor: pointer;
+    background: var(--parchment-dark);
+    user-select: none;
+    transition: background 0.15s;
+  }
+
+  .chapter-header:hover { background: var(--parchment-darker); }
+
+  .chapter-num {
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    font-family: 'Source Code Pro', monospace;
+    font-size: 0.62rem;
+    font-weight: 600;
+    color: #fff;
+    background: var(--rule);
+    padding: 10px 5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .chapter-info {
+    flex: 1;
+    padding: 12px 16px;
+  }
+
+  .chapter-range {
+    font-family: 'Source Code Pro', monospace;
+    font-size: 0.72rem;
+    color: var(--gold);
+    font-weight: 600;
+    letter-spacing: 0.06em;
+  }
+
+  .chapter-name {
+    font-family: 'IM Fell English', serif;
+    font-size: 1.05rem;
+    color: var(--ink);
+    margin-top: 2px;
+  }
+
+  .chapter-points {
+    font-size: 0.72rem;
+    color: var(--ink-light);
+    font-style: italic;
+    margin-top: 2px;
+  }
+
+  .chapter-toggle {
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    font-size: 0.8rem;
+    color: var(--gold);
+    transition: transform 0.25s;
+    flex-shrink: 0;
+  }
+
+  .chapter.open .chapter-toggle { transform: rotate(180deg); }
+
+  /* CRIMES TABLE */
+  .crimes-table {
+    display: none;
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  .chapter.open .crimes-table { display: table; }
+
+  .crimes-table thead tr {
+    background: var(--parchment-darker);
+    border-bottom: 2px solid var(--rule);
+  }
+
+  .crimes-table thead th {
+    padding: 7px 12px;
+    font-family: 'Source Code Pro', monospace;
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gold);
+    text-align: left;
+  }
+
+  .crimes-table th:last-child,
+  .crimes-table td:last-child {
+    text-align: center;
+  }
+
+  .crimes-table tbody tr {
+    border-bottom: 1px solid var(--parchment-darker);
+    transition: background 0.12s;
+  }
+
+  .crimes-table tbody tr:last-child { border-bottom: none; }
+
+  .crimes-table tbody tr.row-F { background: var(--felony-bg); }
+  .crimes-table tbody tr.row-M { background: var(--misdemeanor-bg); }
+  .crimes-table tbody tr:hover { background: rgba(154,125,58,0.1) !important; }
+
+  .crimes-table td {
+    padding: 9px 12px;
+    font-size: 0.82rem;
+    vertical-align: middle;
+    line-height: 1.4;
+  }
+
+  .td-code {
+    font-family: 'Source Code Pro', monospace;
+    font-size: 0.72rem;
+    color: var(--gold);
+    font-weight: 600;
+    white-space: nowrap;
+    width: 120px;
+  }
+
+  .td-name {
+    font-weight: 700;
+    color: var(--ink);
+  }
+
+  .td-desc {
+    color: var(--ink-light);
+    font-style: italic;
+    font-size: 0.78rem;
+  }
+
+  .td-jail {
+    white-space: nowrap;
+    font-family: 'Source Code Pro', monospace;
+    font-size: 0.75rem;
+    color: var(--accent);
+    width: 100px;
+    text-align: right !important;
+  }
+
+  .td-type {
+    width: 60px;
+    text-align: center !important;
+  }
+
+  /* FOOTER */
+  .doc-footer {
+    padding: 20px 60px 40px;
+    border-top: 3px double var(--rule);
+    text-align: center;
+  }
+
+  .doc-footer p {
+    font-size: 0.72rem;
+    color: var(--gold);
+    font-style: italic;
+    letter-spacing: 0.06em;
+  }
+
+  .ornament {
+    text-align: center;
+    color: var(--rule);
+    font-size: 1.2rem;
+    margin: 10px 0;
+    letter-spacing: 6px;
+  }
+
+  /* HIDDEN by search */
+  .crimes-table tr.hidden { display: none; }
+
+  @media (max-width: 600px) {
+    .doc-header, .doc-body, .search-wrap, .doc-footer { padding-left: 20px; padding-right: 20px; }
+    .legend-bar { padding: 12px 20px; gap: 16px; flex-wrap: wrap; }
+    .doc-title { font-size: 1.4rem; }
+    .td-desc { display: none; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="doc-header">
+    <div class="seal"></div>
+    <div class="doc-title">Kitab Undang-Undang Hukum Pidana</div>
+    <div class="doc-subtitle">Penal Code — Sistem Klasifikasi Tindak Pidana</div>
+    <div class="doc-meta">Ditetapkan &bull; Berlaku Untuk Semua Warga Rizz City</div>
+  </div>
+
+  <!-- LEGEND -->
+  <div class="legend-bar">
+    <div class="legend-item"><span class="badge badge-F">F</span> Felony — Kejahatan Berat</div>
+    <div class="legend-item"><span class="badge badge-M">M</span> Misdemeanor — Pelanggaran</div>
+  </div>
+
+  <!-- SEARCH -->
+  <div class="search-wrap">
+    <input type="text" id="searchInput" placeholder="Cari pasal, nama kejahatan, atau kode…">
+  </div>
+
+  <!-- BODY -->
+  <div class="doc-body" id="docBody">
+
+    <!-- BAB I -->
+    <div class="chapter" data-chapter="1">
+      <div class="chapter-header" onclick="toggle(this)">
+        <div class="chapter-num">BAB I</div>
+        <div class="chapter-info">
+          <div class="chapter-range">PC 100–199</div>
+          <div class="chapter-name">Pelanggaran Ringan</div>
+          <div class="chapter-points">Poin: 1</div>
+        </div>
+        <div class="chapter-toggle">▼</div>
+      </div>
+      <table class="crimes-table">
+        <thead><tr><th>Kode</th><th>Kejahatan</th><th>Keterangan</th><th>Tipe</th><th>Penjara</th></tr></thead>
+        <tbody>
+          <tr class="row-M"><td class="td-code">PC 191</td><td class="td-name">Provoke at LEO</td><td class="td-desc">Memprovokasi petugas penegak hukum</td><td class="td-type"><span class="badge badge-M">M</span></td><td class="td-jail">6 bln</td></tr>
+          <tr class="row-M"><td class="td-code">PC 192</td><td class="td-name">Insult at LEO</td><td class="td-desc">Menghina petugas penegak hukum</td><td class="td-type"><span class="badge badge-M">M</span></td><td class="td-jail">6 bln</td></tr>
+          <tr class="row-M"><td class="td-code">PC 193</td><td class="td-name">Traffic Violations (Major)</td><td class="td-desc">Pelanggaran lalu lintas berat</td><td class="td-type"><span class="badge badge-M">M</span></td><td class="td-jail">6 bln</td></tr>
+          <tr class="row-M"><td class="td-code">PC 195</td><td class="td-name">Vandalism (Minor)</td><td class="td-desc">Perusakan properti ringan</td><td class="td-type"><span class="badge badge-M">M</span></td><td class="td-jail">6 bln</td></tr>
+          <tr class="row-M"><td class="td-code">PC 196</td><td class="td-name">Theft (Petty)</td><td class="td-desc">Pencurian barang bernilai rendah</td><td class="td-type"><span class="badge badge-M">M</span></td><td class="td-jail">6 bln</td></tr>
+          <tr class="row-M"><td class="td-code">PC 197</td><td class="td-name">Loitering</td><td class="td-desc">Berkeliaran tanpa tujuan di area terlarang</td><td class="td-type"><span class="badge badge-M">M</span></td><td class="td-jail">6 bln</td></tr>
+          <tr class="row-M"><td class="td-code">PC 199</td><td class="td-name">Evading LEO (Low Speed)</td><td class="td-desc">Melarikan diri dari petugas, kecepatan rendah</td><td class="td-type"><span class="badge badge-M">M</span></td><td class="td-jail">6 bln</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- BAB II -->
+    <div class="chapter" data-chapter="2">
+      <div class="chapter-header" onclick="toggle(this)">
+        <div class="chapter-num">BAB II</div>
+        <div class="chapter-info">
+          <div class="chapter-range">PC 200–209</div>
+          <div class="chapter-name">Pelanggaran Publik & Ketertiban</div>
+          <div class="chapter-points">Poin: 1</div>
+        </div>
+        <div class="chapter-toggle">▼</div>
+      </div>
+      <table class="crimes-table">
+        <thead><tr><th>Kode</th><th>Kejahatan</th><th>Keterangan</th><th>Tipe</th><th>Penjara</th></tr></thead>
+        <tbody>
+          <tr class="row-M"><td class="td-code">PC 200</td><td class="td-name">Public Urination</td><td class="td-desc">Buang air kecil di tempat umum</td><td class="td-type"><span class="badge badge-M">M</span></td><td class="td-jail">10 bln</td></tr>
+          <tr class="row-M"><td class="td-code">PC 206</td><td class="td-name">Disturbing the Peace</td><td class="td-desc">Mengganggu ketentraman umum</td><td class="td-type"><span class="badge badge-M">M</span></td><td class="td-jail">15 bln</td></tr>
+          <tr class="row-M"><td class="td-code">PC 207</td><td class="td-name">Trespassing</td><td class="td-desc">Memasuki properti pribadi tanpa izin</td><td class="td-type"><span class="badge badge-M">M</span></td><td class="td-jail">10 bln</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- BAB III -->
+    <div class="chapter" data-chapter="3">
+      <div class="chapter-header" onclick="toggle(this)">
+        <div class="chapter-num">BAB III</div>
+        <div class="chapter-info">
+          <div class="chapter-range">PC 240–249</div>
+          <div class="chapter-name">Penyerangan & Kekerasan</div>
+          <div class="chapter-points">Poin: 2–5</div>
+        </div>
+        <div class="chapter-toggle">▼</div>
+      </div>
+      <table class="crimes-table">
+        <thead><tr><th>Kode</th><th>Kejahatan</th><th>Keterangan</th><th>Tipe</th><th>Penjara</th></tr></thead>
+        <tbody>
+          <tr class="row-M"><td class="td-code">PC 240</td><td class="td-name">Assault</td><td class="td-desc">Upaya kekerasan fisik atau ancaman</td><td class="td-type"><span class="badge badge-M">M</span></td><td class="td-jail">30 bln</td></tr>
+          <tr class="row-M"><td class="td-code">PC 242(a)</td><td class="td-name">Simple Battery</td><td class="td-desc">Kekerasan fisik melawan hukum terhadap orang lain</td><td class="td-type"><span class="badge badge-M">M</span></td><td class="td-jail">25 bln</td></tr>
+          <tr class="row-F"><td class="td-code">PC 243(b)</td><td class="td-name">Battery on a Peace Officer</td><td class="td-desc">Kekerasan fisik terhadap petugas saat bertugas</td><td class="td-type"><span class="badge badge-F">F</span></td><td class="td-jail">55 bln</td></tr>
+          <tr class="row-F"><td class="td-code">PC 245(a)(1)</td><td class="td-name">Assault with a Deadly Weapon</td><td class="td-desc">Penyerangan menggunakan senjata mematikan</td><td class="td-type"><span class="badge badge-F">F</span></td><td class="td-jail">60 bln</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- BAB IV -->
+    <div class="chapter" data-chapter="4">
+      <div class="chapter-header" onclick="toggle(this)">
+        <div class="chapter-num">BAB IV</div>
+        <div class="chapter-info">
+          <div class="chapter-range">PC 450–489</div>
+          <div class="chapter-name">Pencurian & Properti</div>
+          <div class="chapter-points">Poin: 1–6</div>
+        </div>
+        <div class="chapter-toggle">▼</div>
+      </div>
+      <table class="crimes-table">
+        <thead><tr><th>Kode</th><th>Kejahatan</th><th>Keterangan</th><th>Tipe</th><th>Penjara</th></tr></thead>
+        <tbody>
+          <tr class="row-F"><td class="td-code">PC 451</td><td class="td-name">Arson</td><td class="td-desc">Membakar properti dengan sengaja dan melawan hukum</td><td class="td-type"><span class="badge badge-F">F</span></td><td class="td-jail">70 bln</td></tr>
+          <tr class="row-F"><td class="td-code">PC 459</td><td class="td-name">Burglary</td><td class="td-desc">Memasuki struktur dengan niat mencuri</td><td class="td-type"><span class="badge badge-F">F</span></td><td class="td-jail">60 bln</td></tr>
+          <tr class="row-M"><td class="td-code">PC 459(a)</td><td class="td-name">Shoplifting</td><td class="td-desc">Mencuri barang dari toko komersial</td><td class="td-type"><span class="badge badge-M">M</span></td><td class="td-jail">25 bln</td></tr>
+          <tr class="row-F"><td class="td-code">PC 487(d)(1)</td><td class="td-name">Grand Theft Auto</td><td class="td-desc">Mencuri kendaraan bermotor bernilai tinggi</td><td class="td-type"><span class="badge badge-F">F</span></td><td class="td-jail">65 bln</td></tr>
+          <tr class="row-M"><td class="td-code">PC 488</td><td class="td-name">Petty Theft</td><td class="td-desc">Pencurian properti bernilai rendah</td><td class="td-type"><span class="badge badge-M">M</span></td><td class="td-jail">25 bln</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- BAB V -->
+    <div class="chapter" data-chapter="5">
+      <div class="chapter-header" onclick="toggle(this)">
+        <div class="chapter-num">BAB V</div>
+        <div class="chapter-info">
+          <div class="chapter-range">PC 590–599</div>
+          <div class="chapter-name">Vandalisme & Kerusakan Properti</div>
+          <div class="chapter-points">Poin: 1–4</div>
+        </div>
+        <div class="chapter-toggle">▼</div>
+      </div>
+      <table class="crimes-table">
+        <thead><tr><th>Kode</th><th>Kejahatan</th><th>Keterangan</th><th>Tipe</th><th>Penjara</th></tr></thead>
+        <tbody>
+          <tr class="row-M"><td class="td-code">PC 594(a)</td><td class="td-name">Vandalism of Private Property</td><td class="td-desc">Merusak properti pribadi orang lain</td><td class="td-type"><span class="badge badge-M">M</span></td><td class="td-jail">25 bln</td></tr>
+          <tr class="row-F"><td class="td-code">PC 594(b)</td><td class="td-name">Vandalism of Government Property</td><td class="td-desc">Merusak properti atau fasilitas pemerintah</td><td class="td-type"><span class="badge badge-F">F</span></td><td class="td-jail">45 bln</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- BAB VI -->
+    <div class="chapter" data-chapter="6">
+      <div class="chapter-header" onclick="toggle(this)">
+        <div class="chapter-num">BAB VI</div>
+        <div class="chapter-info">
+          <div class="chapter-range">PC 600–649</div>
+          <div class="chapter-name">Penipuan & Pemalsuan</div>
+          <div class="chapter-points">Poin: 3–5</div>
+        </div>
+        <div class="chapter-toggle">▼</div>
+      </div>
+      <table class="crimes-table">
+        <thead><tr><th>Kode</th><th>Kejahatan</th><th>Keterangan</th><th>Tipe</th><th>Penjara</th></tr></thead>
+        <tbody>
+          <tr class="row-F"><td class="td-code">PC 602</td><td class="td-name">Fraud</td><td class="td-desc">Penipuan untuk mendapatkan keuntungan finansial</td><td class="td-type"><span class="badge badge-F">F</span></td><td class="td-jail">50 bln</td></tr>
+          <tr class="row-F"><td class="td-code">PC 603</td><td class="td-name">Forgery</td><td class="td-desc">Memalsukan dokumen atau tanda tangan</td><td class="td-type"><span class="badge badge-F">F</span></td><td class="td-jail">45 bln</td></tr>
+          <tr class="row-F"><td class="td-code">PC 604</td><td class="td-name">Embezzlement</td><td class="td-desc">Penggelapan dana yang dipercayakan</td><td class="td-type"><span class="badge badge-F">F</span></td><td class="td-jail">55 bln</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- BAB VII -->
+    <div class="chapter" data-chapter="7">
+      <div class="chapter-header" onclick="toggle(this)">
+        <div class="chapter-num">BAB VII</div>
+        <div class="chapter-info">
+          <div class="chapter-range">PC 650–699</div>
+          <div class="chapter-name">Narkotika & Senjata</div>
+          <div class="chapter-points">Poin: 4–8</div>
+        </div>
+        <div class="chapter-toggle">▼</div>
+      </div>
+      <table class="crimes-table">
+        <thead><tr><th>Kode</th><th>Kejahatan</th><th>Keterangan</th><th>Tipe</th><th>Penjara</th></tr></thead>
+        <tbody>
+          <tr class="row-F"><td class="td-code">PC 652</td><td class="td-name">Possession of Controlled Substance</td><td class="td-desc">Memiliki narkotika tanpa izin yang sah</td><td class="td-type"><span class="badge badge-F">F</span></td><td class="td-jail">50 bln</td></tr>
+          <tr class="row-F"><td class="td-code">PC 653</td><td class="td-name">Drug Trafficking</td><td class="td-desc">Mengedarkan atau menjual narkotika secara ilegal</td><td class="td-type"><span class="badge badge-F">F</span></td><td class="td-jail">80 bln</td></tr>
+          <tr class="row-F"><td class="td-code">PC 670</td><td class="td-name">Illegal Weapons Possession</td><td class="td-desc">Memiliki senjata berbahaya tanpa izin</td><td class="td-type"><span class="badge badge-F">F</span></td><td class="td-jail">55 bln</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- BAB VIII -->
+    <div class="chapter" data-chapter="8">
+      <div class="chapter-header" onclick="toggle(this)">
+        <div class="chapter-num">BAB VIII</div>
+        <div class="chapter-info">
+          <div class="chapter-range">PC 780–799</div>
+          <div class="chapter-name">Pelanggaran Lalu Lintas</div>
+          <div class="chapter-points">Poin: 2–3</div>
+        </div>
+        <div class="chapter-toggle">▼</div>
+      </div>
+      <table class="crimes-table">
+        <thead><tr><th>Kode</th><th>Kejahatan</th><th>Keterangan</th><th>Tipe</th><th>Penjara</th></tr></thead>
+        <tbody>
+          <tr class="row-M"><td class="td-code">PC 786</td><td class="td-name">Reckless Driving</td><td class="td-desc">Mengemudi ceroboh dan membahayakan publik</td><td class="td-type"><span class="badge badge-M">M</span></td><td class="td-jail">35 bln</td></tr>
+          <tr class="row-M"><td class="td-code">PC 789</td><td class="td-name">Street Racing</td><td class="td-desc">Berpartisipasi dalam balap liar di jalan umum</td><td class="td-type"><span class="badge badge-M">M</span></td><td class="td-jail">25 bln</td></tr>
+          <tr class="row-M"><td class="td-code">PC 790</td><td class="td-name">Hit and Run</td><td class="td-desc">Meninggalkan tempat kecelakaan tanpa melapor</td><td class="td-type"><span class="badge badge-M">M</span></td><td class="td-jail">30 bln</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- BAB IX -->
+    <div class="chapter" data-chapter="9">
+      <div class="chapter-header" onclick="toggle(this)">
+        <div class="chapter-num">BAB IX</div>
+        <div class="chapter-info">
+          <div class="chapter-range">PC 700–799</div>
+          <div class="chapter-name">Pelanggaran Ringan–Sedang</div>
+          <div class="chapter-points">Poin: 2–3</div>
+        </div>
+        <div class="chapter-toggle">▼</div>
+      </div>
+      <table class="crimes-table">
+        <thead><tr><th>Kode</th><th>Kejahatan</th><th>Keterangan</th><th>Tipe</th><th>Penjara</th></tr></thead>
+        <tbody>
+          <tr class="row-M"><td class="td-code">PC 788</td><td class="td-name">Possession of Stolen Goods</td><td class="td-desc">Kepemilikan barang curian</td><td class="td-type"><span class="badge badge-M">M</span></td><td class="td-jail">9 bln</td></tr>
+          <tr class="row-M"><td class="td-code">PC 789</td><td class="td-name">Resisting Arrest</td><td class="td-desc">Melawan saat ditangkap petugas</td><td class="td-type"><span class="badge badge-M">M</span></td><td class="td-jail">9 bln</td></tr>
+          <tr class="row-M"><td class="td-code">PC 790</td><td class="td-name">Reckless Driving</td><td class="td-desc">Mengemudi sembrono dan membahayakan</td><td class="td-type"><span class="badge badge-M">M</span></td><td class="td-jail">9 bln</td></tr>
+          <tr class="row-M"><td class="td-code">PC 791</td><td class="td-name">Public Disturbance</td><td class="td-desc">Mengganggu ketertiban umum</td><td class="td-type"><span class="badge badge-M">M</span></td><td class="td-jail">9 bln</td></tr>
+          <tr class="row-M"><td class="td-code">PC 792</td><td class="td-name">Vandalism (Major)</td><td class="td-desc">Perusakan properti berat</td><td class="td-type"><span class="badge badge-M">M</span></td><td class="td-jail">9 bln</td></tr>
+          <tr class="row-M"><td class="td-code">PC 793</td><td class="td-name">Illegal Street Racing</td><td class="td-desc">Balap liar di jalan umum</td><td class="td-type"><span class="badge badge-M">M</span></td><td class="td-jail">9 bln</td></tr>
+          <tr class="row-M"><td class="td-code">PC 794</td><td class="td-name">Theft (Grand)</td><td class="td-desc">Pencurian barang bernilai tinggi</td><td class="td-type"><span class="badge badge-M">M</span></td><td class="td-jail">19 bln</td></tr>
+          <tr class="row-M"><td class="td-code">PC 795</td><td class="td-name">Drug Paraphernalia</td><td class="td-desc">Kepemilikan alat penggunaan narkotika</td><td class="td-type"><span class="badge badge-M">M</span></td><td class="td-jail">19 bln</td></tr>
+          <tr class="row-M"><td class="td-code">PC 796</td><td class="td-name">Obstruction of Justice</td><td class="td-desc">Menghalangi proses hukum atau penyelidikan</td><td class="td-type"><span class="badge badge-M">M</span></td><td class="td-jail">19 bln</td></tr>
+          <tr class="row-M"><td class="td-code">PC 797</td><td class="td-name">Evading LEO (High Speed)</td><td class="td-desc">Melarikan diri dari petugas, kecepatan tinggi</td><td class="td-type"><span class="badge badge-M">M</span></td><td class="td-jail">19 bln</td></tr>
+          <tr class="row-M"><td class="td-code">PC 798</td><td class="td-name">Bribery</td><td class="td-desc">Menyuap pejabat atau petugas</td><td class="td-type"><span class="badge badge-M">M</span></td><td class="td-jail">19 bln</td></tr>
+          <tr class="row-M"><td class="td-code">PC 799</td><td class="td-name">Assault (Simple)</td><td class="td-desc">Penyerangan sederhana tanpa senjata</td><td class="td-type"><span class="badge badge-M">M</span></td><td class="td-jail">19 bln</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- BAB X -->
+    <div class="chapter" data-chapter="10">
+      <div class="chapter-header" onclick="toggle(this)">
+        <div class="chapter-num">BAB X</div>
+        <div class="chapter-info">
+          <div class="chapter-range">PC 800–899</div>
+          <div class="chapter-name">Kejahatan Medium</div>
+          <div class="chapter-points">Poin: 4–5</div>
+        </div>
+        <div class="chapter-toggle">▼</div>
+      </div>
+      <table class="crimes-table">
+        <thead><tr><th>Kode</th><th>Kejahatan</th><th>Keterangan</th><th>Tipe</th><th>Penjara</th></tr></thead>
+        <tbody>
+          <tr class="row-F"><td class="td-code">PC 888</td><td class="td-name">Auto Theft (Regular)</td><td class="td-desc">Pencurian kendaraan biasa</td><td class="td-type"><span class="badge badge-F">F</span></td><td class="td-jail">15 bln</td></tr>
+          <tr class="row-F"><td class="td-code">PC 889</td><td class="td-name">Burglary</td><td class="td-desc">Pembongkaran atau pencurian dari bangunan</td><td class="td-type"><span class="badge badge-F">F</span></td><td class="td-jail">15 bln</td></tr>
+          <tr class="row-F"><td class="td-code">PC 890</td><td class="td-name">Fraud / Identity Theft</td><td class="td-desc">Penipuan atau pencurian identitas</td><td class="td-type"><span class="badge badge-F">F</span></td><td class="td-jail">15 bln</td></tr>
+          <tr class="row-F"><td class="td-code">PC 891</td><td class="td-name">Illegal Firearm Possession</td><td class="td-desc">Kepemilikan senjata api ilegal</td><td class="td-type"><span class="badge badge-F">F</span></td><td class="td-jail">15 bln</td></tr>
+          <tr class="row-F"><td class="td-code">PC 892</td><td class="td-name">Drug Possession (Minor)</td><td class="td-desc">Kepemilikan narkotika dalam jumlah kecil</td><td class="td-type"><span class="badge badge-F">F</span></td><td class="td-jail">15 bln</td></tr>
+          <tr class="row-F"><td class="td-code">PC 893</td><td class="td-name">Carjacking</td><td class="td-desc">Pembajakan kendaraan dengan kekerasan</td><td class="td-type"><span class="badge badge-F">F</span></td><td class="td-jail">15 bln</td></tr>
+          <tr class="row-F"><td class="td-code">PC 894</td><td class="td-name">Money Laundering</td><td class="td-desc">Pencucian uang hasil kejahatan</td><td class="td-type"><span class="badge badge-F">F</span></td><td class="td-jail">13 bln</td></tr>
+          <tr class="row-F"><td class="td-code">PC 895</td><td class="td-name">Breaking and Entering</td><td class="td-desc">Memaksa masuk ke properti tanpa izin</td><td class="td-type"><span class="badge badge-F">F</span></td><td class="td-jail">13 bln</td></tr>
+          <tr class="row-F"><td class="td-code">PC 896</td><td class="td-name">Discharge of Firearm</td><td class="td-desc">Menembakkan senjata api di tempat umum</td><td class="td-type"><span class="badge badge-F">F</span></td><td class="td-jail">13 bln</td></tr>
+          <tr class="row-F"><td class="td-code">PC 897</td><td class="td-name">Illegal Weapon Trade</td><td class="td-desc">Perdagangan senjata ilegal</td><td class="td-type"><span class="badge badge-F">F</span></td><td class="td-jail">13 bln</td></tr>
+          <tr class="row-F"><td class="td-code">PC 898</td><td class="td-name">Drug Possession (Major)</td><td class="td-desc">Kepemilikan narkotika dalam jumlah besar</td><td class="td-type"><span class="badge badge-F">F</span></td><td class="td-jail">13 bln</td></tr>
+          <tr class="row-F"><td class="td-code">PC 899</td><td class="td-name">Assault with Deadly Weapon</td><td class="td-desc">Penyerangan menggunakan senjata mematikan</td><td class="td-type"><span class="badge badge-F">F</span></td><td class="td-jail">13 bln</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- BAB XI -->
+    <div class="chapter" data-chapter="11">
+      <div class="chapter-header" onclick="toggle(this)">
+        <div class="chapter-num">BAB XI</div>
+        <div class="chapter-info">
+          <div class="chapter-range">PC 900–999</div>
+          <div class="chapter-name">Kejahatan Berat</div>
+          <div class="chapter-points">Poin: 6–10</div>
+        </div>
+        <div class="chapter-toggle">▼</div>
+      </div>
+      <table class="crimes-table">
+        <thead><tr><th>Kode</th><th>Kejahatan</th><th>Keterangan</th><th>Tipe</th><th>Penjara</th></tr></thead>
+        <tbody>
+          <tr class="row-F"><td class="td-code">PC 901</td><td class="td-name">Kidnapping</td><td class="td-desc">Menahan atau memindahkan seseorang secara paksa</td><td class="td-type"><span class="badge badge-F">F</span></td><td class="td-jail">90 bln</td></tr>
+          <tr class="row-F"><td class="td-code">PC 902</td><td class="td-name">Armed Robbery</td><td class="td-desc">Perampokan menggunakan senjata</td><td class="td-type"><span class="badge badge-F">F</span></td><td class="td-jail">85 bln</td></tr>
+          <tr class="row-F"><td class="td-code">PC 920</td><td class="td-name">Manslaughter</td><td class="td-desc">Pembunuhan tidak disengaja</td><td class="td-type"><span class="badge badge-F">F</span></td><td class="td-jail">95 bln</td></tr>
+          <tr class="row-F"><td class="td-code">PC 979</td><td class="td-name">Extortion / Blackmail</td><td class="td-desc">Pemerasan atau ancaman demi keuntungan</td><td class="td-type"><span class="badge badge-F">F</span></td><td class="td-jail">21 bln</td></tr>
+          <tr class="row-F"><td class="td-code">PC 980</td><td class="td-name">Drug Distribution (Minor)</td><td class="td-desc">Pengedaran narkotika dalam jumlah kecil</td><td class="td-type"><span class="badge badge-F">F</span></td><td class="td-jail">21 bln</td></tr>
+          <tr class="row-F"><td class="td-code">PC 981</td><td class="td-name">Grand Theft Auto</td><td class="td-desc">Pencurian kendaraan bermotor</td><td class="td-type"><span class="badge badge-F">F</span></td><td class="td-jail">21 bln</td></tr>
+          <tr class="row-F"><td class="td-code">PC 982</td><td class="td-name">Robbery (Unarmed)</td><td class="td-desc">Perampokan tanpa senjata</td><td class="td-type"><span class="badge badge-F">F</span></td><td class="td-jail">21 bln</td></tr>
+          <tr class="row-F"><td class="td-code">PC 983</td><td class="td-name">Gang Violence</td><td class="td-desc">Kekerasan oleh atau untuk geng</td><td class="td-type"><span class="badge badge-F">F</span></td><td class="td-jail">21 bln</td></tr>
+          <tr class="row-F"><td class="td-code">PC 984</td><td class="td-name">Home Invasion</td><td class="td-desc">Penyerbuan rumah dengan kekerasan</td><td class="td-type"><span class="badge badge-F">F</span></td><td class="td-jail">24 bln</td></tr>
+          <tr class="row-F"><td class="td-code">PC 985</td><td class="td-name">Aggravated Assault</td><td class="td-desc">Penyerangan berat yang menyebabkan cedera serius</td><td class="td-type"><span class="badge badge-F">F</span></td><td class="td-jail">24 bln</td></tr>
+          <tr class="row-F"><td class="td-code">PC 986</td><td class="td-name">Murder (2nd Degree)</td><td class="td-desc">Pembunuhan tanpa perencanaan sebelumnya</td><td class="td-type"><span class="badge badge-F">F</span></td><td class="td-jail">24 bln</td></tr>
+          <tr class="row-F"><td class="td-code">PC 987</td><td class="td-name">Terroristic Threats</td><td class="td-desc">Mengancam dengan tindakan terorisme</td><td class="td-type"><span class="badge badge-F">F</span></td><td class="td-jail">24 bln</td></tr>
+          <tr class="row-F"><td class="td-code">PC 988</td><td class="td-name">Gang Leadership</td><td class="td-desc">Memimpin aktivitas geng kriminal</td><td class="td-type"><span class="badge badge-F">F</span></td><td class="td-jail">24 bln</td></tr>
+          <tr class="row-F"><td class="td-code">PC 989</td><td class="td-name">Human Trafficking</td><td class="td-desc">Perdagangan manusia untuk eksploitasi</td><td class="td-type"><span class="badge badge-F">F</span></td><td class="td-jail">30 bln</td></tr>
+          <tr class="row-F"><td class="td-code">PC 990</td><td class="td-name">Armed Robbery (Store)</td><td class="td-desc">Perampokan toko dengan senjata</td><td class="td-type"><span class="badge badge-F">F</span></td><td class="td-jail">27 bln</td></tr>
+          <tr class="row-F"><td class="td-code">PC 991</td><td class="td-name">Armed Robbery (Bank)</td><td class="td-desc">Perampokan bank dengan senjata</td><td class="td-type"><span class="badge badge-F">F</span></td><td class="td-jail">30 bln</td></tr>
+          <tr class="row-F"><td class="td-code">PC 992</td><td class="td-name">Arson</td><td class="td-desc">Membakar properti atau bangunan secara sengaja</td><td class="td-type"><span class="badge badge-F">F</span></td><td class="td-jail">30 bln</td></tr>
+          <tr class="row-F"><td class="td-code">PC 993</td><td class="td-name">Drug Distribution (Major)</td><td class="td-desc">Pengedaran narkotika dalam jumlah besar</td><td class="td-type"><span class="badge badge-F">F</span></td><td class="td-jail">30 bln</td></tr>
+          <tr class="row-F"><td class="td-code">PC 994</td><td class="td-name">Drug Manufacturing</td><td class="td-desc">Memproduksi narkotika ilegal</td><td class="td-type"><span class="badge badge-F">F</span></td><td class="td-jail">30 bln</td></tr>
+          <tr class="row-F"><td class="td-code">PC 995</td><td class="td-name">Terrorism</td><td class="td-desc">Tindakan terorisme untuk menimbulkan ketakutan</td><td class="td-type"><span class="badge badge-F">F</span></td><td class="td-jail">33 bln</td></tr>
+          <tr class="row-F"><td class="td-code">PC 996</td><td class="td-name">Drive-by Shooting</td><td class="td-desc">Menembak dari kendaraan bergerak</td><td class="td-type"><span class="badge badge-F">F</span></td><td class="td-jail">33 bln</td></tr>
+          <tr class="row-F"><td class="td-code">PC 997</td><td class="td-name">Attack at LEO</td><td class="td-desc">Menyerang petugas penegak hukum</td><td class="td-type"><span class="badge badge-F">F</span></td><td class="td-jail">33 bln</td></tr>
+          <tr class="row-F"><td class="td-code">PC 998</td><td class="td-name">Attempted Murder</td><td class="td-desc">Percobaan pembunuhan terhadap orang lain</td><td class="td-type"><span class="badge badge-F">F</span></td><td class="td-jail">33 bln</td></tr>
+          <tr class="row-F"><td class="td-code">PC 999</td><td class="td-name">Murder (1st Degree)</td><td class="td-desc">Pembunuhan disengaja dan terencana</td><td class="td-type"><span class="badge badge-F">F</span></td><td class="td-jail">36 bln</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div><!-- /doc-body -->
+
+  <!-- FOOTER -->
+  <div class="doc-footer">
+    <div class="ornament">— ✦ —</div>
+    <p><em>F = Felony (Kejahatan Berat) &nbsp;|&nbsp; M = Misdemeanor (Pelanggaran)</em></p>
+    <p style="margin-top:6px;">Seluruh pasal dalam dokumen ini berlaku penuh dan mengikat secara hukum.</p>
+  </div>
+
+</div><!-- /page -->
+
+<script>
+  function toggle(header) {
+    const chapter = header.closest('.chapter');
+    chapter.classList.toggle('open');
+  }
+
+  document.getElementById('searchInput').addEventListener('input', function() {
+    const q = this.value.toLowerCase().trim();
+    const chapters = document.querySelectorAll('.chapter');
+
+    chapters.forEach(chapter => {
+      const rows = chapter.querySelectorAll('tbody tr');
+      let anyVisible = false;
+
+      rows.forEach(row => {
+        const text = row.textContent.toLowerCase();
+        if (!q || text.includes(q)) {
+          row.classList.remove('hidden');
+          anyVisible = true;
+        } else {
+          row.classList.add('hidden');
+        }
+      });
+
+      if (!q) {
+        chapter.style.display = '';
+        chapter.classList.remove('open');
+      } else if (anyVisible) {
+        chapter.style.display = '';
+        chapter.classList.add('open');
+      } else {
+        chapter.style.display = 'none';
+      }
+    });
+  });
+</script>
+</body>
+</html>
